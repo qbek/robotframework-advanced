@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    web/ProjectSteps.robot
+Resource    ${TYPE}/ProjectSteps.robot
 Resource    aux/TestDataGenerator.robot
 
 

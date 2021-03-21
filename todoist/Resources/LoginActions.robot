@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    web/TodoistApp.robot
+Resource    ${TYPE}/TodoistApp.robot
 
 
 *** Variables ***
