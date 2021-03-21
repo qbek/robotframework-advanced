@@ -3,3 +3,6 @@
 *.png
 *.log
 *.pyc
+.idea
+target
+*.iml
