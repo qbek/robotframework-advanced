@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ${TYPE}/ProjectSteps.robot
-Resource    aux/TestDataGenerator.robot
+Resource    auxiliary/TestDataGenerator.robot
 
 
 
