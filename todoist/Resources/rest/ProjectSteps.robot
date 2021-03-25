@@ -1,19 +1,15 @@
 *** Settings ***
-Library     REST    https://api.todoist.com/rest/v1
-
+Library     lib/restapi.py
 
 *** Keywords ***
 Create project
     [Arguments]    ${name}
-    &{response}=    Post     /projects    { "name":"${name}"}    headers={"Authorization": "Bearer d469ce54eca3a7ca5b6b5e7d4c8d51ced8d4c7b1"}
-    Output
-    Set Test Variable    ${projectId}     ${response.body['id']}
+    Create project with name    ${name}
 
 
 Check if project is created
     [Arguments]    ${name}
-    Get    /projects/${projectId}      headers={"Authorization": "Bearer d469ce54eca3a7ca5b6b5e7d4c8d51ced8d4c7b1"}
-    Output
+    Check if project was created with name    ${name}
 
 Select project
     [Arguments]     ${name}
