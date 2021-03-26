@@ -1,7 +1,6 @@
 *** Settings ***
-Resource    ${TYPE}/ProjectSteps.robot
 Resource    auxiliary/TestDataGenerator.robot
-
+Resource    ${TYPE}/ProjectSteps.robot
 
 
 *** Keywords ***

@@ -1,5 +1,5 @@
 *** Settings ***
-Library     lib/restapi.py
+Library     lib/restapi.py   ${TOKEN}
 
 *** Keywords ***
 Create project
@@ -9,8 +9,7 @@ Create project
 
 Check if project is created
     [Arguments]    ${name}
-    ${actual} =    Check if project was created with name    ${name}
-    Should Match    ${actual}    ${name}
+    Check if project was created with name    ${name}
 
 Select project
     [Arguments]     ${name}

@@ -4,18 +4,19 @@ import json
 
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
-
-
 from robot.api.deco import keyword
 
 
 class restapi:
 
     ROBOT_AUTO_KEYWORDS = False
-    your_token = "d469ce54eca3a7ca5b6b5e7d4c8d51ced8d4c7b1"
+
+    def __init__(self, token):
+        self.your_token = token
 
     @keyword("Create project with name")
     def projectCreation(self, name):
+        logger.console("I'm WORKING!!!")
         resp = requests.post(
             "https://api.todoist.com/rest/v1/projects",
             data=json.dumps({
@@ -26,27 +27,23 @@ class restapi:
                 "X-Request-Id": str(uuid.uuid4()),
                 "Authorization": "Bearer %s" % self.your_token
             }).json()
-        self.project_id = resp["id"]
-        logger.console("I'm WORKING!!!")
-        logger.console(resp)
-        self.privateFunction()
+        BuiltIn().should_be_equal(name, resp["name"])
+        self.projectResponse = resp
+        logger.info(resp, also_console=True)
 
     @keyword("Check if project was created with name")
     def getProjectDetails(self, name):
-        logger.console(f"Project id to get: {self.project_id}")
+        logger.console(f"Project id to get: {self.projectResponse['id']}")
         resp = requests.get(
-            "https://api.todoist.com/rest/v1/projects/%d" % self.project_id,
+            "https://api.todoist.com/rest/v1/projects/%d" % self.projectResponse['id'],
             headers={
                 "Authorization": "Bearer %s" % self.your_token
             }).json()
+        logger.info(resp, also_console=True)
+        BuiltIn().should_be_equal(resp, self.projectResponse)
 
-        logger.console(resp)
-        return "dupa"
-        # BuiltIn().should_be_equal(name, resp["name"])
+
 
     @keyword
     def getProjectId(self):
-        logger.console(f"project_id: {self.project_id}")
-
-    def privateFunction(self):
-        logger.console("I'm private!!!")
+        logger.console(f"project_id: {self.projectResponse['id']}")
