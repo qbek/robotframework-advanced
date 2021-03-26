@@ -13,7 +13,7 @@ ROBOT_AUTO_KEYWORDS = False
 
 
 @keyword("Create project with name")
-def createNewProject(name):
+def projectCreation(name):
     resp = requests.post(
         "https://api.todoist.com/rest/v1/projects",
         data=json.dumps({
@@ -44,6 +44,17 @@ def getProjectDetails(name):
 
     logger.console(resp)
     BuiltIn().should_be_equal(name, resp["name"])
+
+
+@keyword
+def getProjectId():
+    logger.console(f"project_id: {project_id}")
+
+
+@keyword
+def resetData():
+    global project_id
+    project_id = -1
 
 
 def privateFunction():

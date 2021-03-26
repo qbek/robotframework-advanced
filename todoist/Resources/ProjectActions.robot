@@ -9,6 +9,7 @@ User has the project created
     Setup PROJECT_NAME test data
     Create project    ${PROJECT_NAME}
     Check if project is created    ${PROJECT_NAME}
+    getProjectId
 
 
 User adds new task to the project
