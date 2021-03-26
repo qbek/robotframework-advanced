@@ -4,9 +4,7 @@ Resource    Resources/ProjectActions.robot
 
 
 Test Setup    User is logged in
-# Test Teardown    Close Todoist app
-Test Teardown    resetData
-
+Test Teardown    Close Todoist app
 
 
 *** Test Cases ***
