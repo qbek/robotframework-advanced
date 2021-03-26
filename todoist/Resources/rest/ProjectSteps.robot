@@ -9,7 +9,8 @@ Create project
 
 Check if project is created
     [Arguments]    ${name}
-    Check if project was created with name    ${name}
+    ${actual} =    Check if project was created with name    ${name}
+    Should Match    ${actual}    ${name}
 
 Select project
     [Arguments]     ${name}
